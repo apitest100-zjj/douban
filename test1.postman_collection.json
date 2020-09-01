@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "97f9aea8-9094-40a8-9d2c-332f40feb1dd",
+		"name": "test1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "folder1",
+			"item": [
+				{
+					"name": "request1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "08f7ac37-da44-4dc6-b85e-9a47bc0632dd",
+								"exec": [
+									"if (responseCode.code===200){\r",
+									"    postman.setNextRequest(\"request3\");}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ccc47be4-8e88-4f9c-b114-b1025f60927e",
+								"exec": [
+									"//console.log(\"request1 Pre-request Scripts\")\r",
+									"pm.environment.set(\"timestampHeader\",new Date());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "timestamp",
+								"value": "{{timestampHeader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://129.211.129.101:9008/napi/v1/article/view?id=1",
+							"protocol": "http",
+							"host": [
+								"129",
+								"211",
+								"129",
+								"101"
+							],
+							"port": "9008",
+							"path": [
+								"napi",
+								"v1",
+								"article",
+								"view"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://129.211.129.101:9008/napi/v1/article/index?filter[title][like]=a",
+							"protocol": "http",
+							"host": [
+								"129",
+								"211",
+								"129",
+								"101"
+							],
+							"port": "9008",
+							"path": [
+								"napi",
+								"v1",
+								"article",
+								"index"
+							],
+							"query": [
+								{
+									"key": "filter[title][like]",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://129.211.129.101:9008/napi/v1/article/index?filter[slug][like]=a",
+							"protocol": "http",
+							"host": [
+								"129",
+								"211",
+								"129",
+								"101"
+							],
+							"port": "9008",
+							"path": [
+								"napi",
+								"v1",
+								"article",
+								"index"
+							],
+							"query": [
+								{
+									"key": "filter[slug][like]",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request4",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://129.211.129.101:9008/napi/v1/article/index?filter[slug]=aaaa",
+							"protocol": "http",
+							"host": [
+								"129",
+								"211",
+								"129",
+								"101"
+							],
+							"port": "9008",
+							"path": [
+								"napi",
+								"v1",
+								"article",
+								"index"
+							],
+							"query": [
+								{
+									"key": "filter[slug]",
+									"value": "aaaa"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0138a79d-68b3-4186-9ac3-55667d3a19f5",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"folder1 Pre-request Script\")"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "cdb21d1c-e9c3-4648-9fb4-890efea84902",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "09262571-fe5c-4b72-a990-d7175fe99ec8",
+				"type": "text/javascript",
+				"exec": [
+					"console.log(\"collection Pre-request Scripts\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1a0bfb21-f9a2-41eb-8f34-b6c961622233",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
